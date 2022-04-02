@@ -6,7 +6,7 @@ dotenv.config();
 const env = process.env as unknown as IEnv;
 
 const environment: IConfig = {
-	env: 'development',
+	env: env.NODE_ENV,
 	server: {
 		port: env.SERVER_PORT,
 	},
