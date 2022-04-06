@@ -1,13 +1,21 @@
 {
 	"name": "expessjs-boilerplate",
-	"version": "1.0.0",
-	"description": "express api boilerplate in typescript",
-	"main": "index.js",
+	"version": "1.0.1",
+	"description": "Express API boilerplate written in Typescript.",
+	"main": "dist/index.js",
 	"scripts": {
 		"dev": "nodemon src/index.ts"
 	},
 	"author": "@znixbtw",
 	"license": "MIT",
+	"_moduleAliases": {
+		"@config": "dist/config",
+		"@api": "dist/api",
+		"@interface": "dist/interface/index",
+		"@lib": "dist/lib/index",
+		"@middleware": "dist/middleware/index",
+		"@utils": "dist/utils/index"
+	},
 	"dependencies": {
 		"cors": "^2.8.5",
 		"dotenv": "^16.0.0",
@@ -15,6 +23,7 @@
 		"express-validator": "^6.14.0",
 		"helmet": "^5.0.2",
 		"http-errors": "^2.0.0",
+		"module-alias": "^2.2.2",
 		"morgan": "^1.10.0",
 		"winston": "^3.6.0"
 	},

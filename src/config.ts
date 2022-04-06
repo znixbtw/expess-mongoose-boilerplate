@@ -1,5 +1,5 @@
 import dotenv from 'dotenv';
-import { IConfig, IEnv } from './interface';
+import { IConfig, IEnv } from '@interface';
 
 dotenv.config();
 

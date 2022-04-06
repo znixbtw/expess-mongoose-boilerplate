@@ -1,11 +1,12 @@
 import { Router } from 'express';
-
+import { validateInput } from '@middleware';
+import { errorHandler } from '@utils';
 import validator from './validator';
 import controller from './controller';
-import { validateInput } from '../../../middleware';
 
+const { handler } = errorHandler;
 const router = Router();
 
-router.post('/login', validator.login, validateInput, controller.login);
+router.post('/login', validator.login, validateInput, handler(controller.login));
 
 export default router;

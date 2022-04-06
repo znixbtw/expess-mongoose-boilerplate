@@ -1,4 +1,4 @@
-import { validatorRules } from '../../../utils';
+import { validatorRules } from '@utils';
 
 export default {
 	login: [

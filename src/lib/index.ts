@@ -1,2 +1,2 @@
-export { default as errorHandler } from './httpErrors';
 export { default as logger } from './winston';
+export { default as morgan } from './morgan';

@@ -1,7 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
 import { validationResult } from 'express-validator';
-
-import { logger } from '../lib';
+import { logger } from '@lib';
 
 const validateInput = (req: Request, res: Response, next: NextFunction) => {
 	const errors = validationResult(req);
