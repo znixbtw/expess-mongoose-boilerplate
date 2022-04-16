@@ -1,6 +1,6 @@
-import { NextFunction, Request, Response } from 'express';
-import { logger } from '@lib';
-import config from '@config';
+import { Request, Response, NextFunction } from 'express';
+import { logger } from '../utils';
+import config from '../config';
 
 interface Error {
 	status?: number;
@@ -9,51 +9,38 @@ interface Error {
 
 export default {
 	/**
-	 * Throws 404 Error
-	 * @param req
-	 * @param res
+	 * Error 404 handler
 	 */
-	notFound: (req: Request, res: Response): void => {
-		res.status(404).json({
-			error: true,
-			response: 'Endpoint not found.',
+	notFound: (req: Request, res: Response, next: NextFunction): void => {
+		next({
+			status: 404,
+			message: 'Endpoint not found.',
 		});
 	},
 
 	/**
 	 * Controller/service exception handler
-	 * @param fn
 	 */
 	handler: (fn: any) => (req: Request, res: Response, next: NextFunction) => {
 		Promise.resolve(fn(req, res, next)).catch((err: Error) => {
-			logger.info(err.message);
-
-			const statusCode: number = err.status || 500;
-			const message =
-				statusCode === 500 ? (config.env === 'development' ? err.message : 'Unexpected error') : err.message;
-
-			res.status(statusCode).json({
-				error: true,
-				response: message,
-			});
+			logger.error(err.status);
+			next(err);
 		});
 	},
 
 	/**
-	 * Unknown exception handler
-	 * @param err
-	 * @param req
-	 * @param res
-	 * @param next
+	 * Exception handler
 	 */
 	global: (err: Error, req: Request, res: Response, next: NextFunction): void => {
-		logger.error(err.message);
-		console.log('reached');
 		const statusCode: number = err.status || 500;
-		const message =
-			statusCode === 500 ? (config.env === 'development' ? err.message : 'Unexpected error') : err.message;
+		let message: string;
 
-		res.status(err.status || 500).json({
+		if (statusCode === 500 && err.message) {
+			logger.error(err.message);
+			message = config.env.NODE_ENV === 'development' ? err.message : 'Unexpected error';
+		} else message = err.message || 'Unexpected unknown error';
+
+		res.status(statusCode).json({
 			error: true,
 			response: message,
 		});

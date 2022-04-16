@@ -1,15 +1,10 @@
 import dotenv from 'dotenv';
-import { IConfig, IEnv } from '@interface';
 
-dotenv.config();
+const envObj = dotenv.config().parsed;
+if (!envObj) process.exit(1);
 
-const env = process.env as unknown as IEnv;
-
-const environment: IConfig = {
-	env: env.NODE_ENV,
-	server: {
-		port: env.SERVER_PORT,
-	},
+const config = {
+	env: envObj,
 };
 
-export default environment;
+export default config;

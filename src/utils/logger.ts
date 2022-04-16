@@ -1,5 +1,5 @@
 import winston from 'winston';
-import config from '@config';
+import config from '../config';
 
 const levels = {
 	error: 0,
@@ -9,7 +9,7 @@ const levels = {
 	debug: 4,
 };
 
-const level = (): string => (config.env === 'development' ? 'debug' : 'http');
+const level = (): string => (config.env.NODE_ENV === 'development' ? 'debug' : 'http');
 
 const transports = [
 	new winston.transports.Console(),

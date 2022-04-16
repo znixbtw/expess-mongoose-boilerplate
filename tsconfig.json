@@ -12,16 +12,8 @@
 		"sourceMap": false,
 		"moduleResolution": "node",
 		"resolveJsonModule": true,
-		"baseUrl": "src", /* Specify the base directory to resolve non-relative module names. */
-		"paths": {
-			"@config": ["config"],
-			"@api/*": ["api/*"],
-			"@interface": ["interface/index"],
-			"@lib": ["lib/index"],
-			"@middleware": ["middleware/index"],
-			"@utils": ["utils/index"]
-		}
+		"baseUrl": ".", /* Specify the base directory to resolve non-relative module names. */
 	},
 	"include": ["src/**/*.ts", "src/**/*.json", ".env"],
-	"exclude": ["node_modules", "src/http", "src/logs", "src/tests"]
+	"exclude": ["node_modules"]
 }

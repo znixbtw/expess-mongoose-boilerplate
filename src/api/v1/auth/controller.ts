@@ -1,20 +1,13 @@
-import { NextFunction, Request, Response } from 'express';
+import { Request, Response } from 'express';
 import service from './service';
 
 export default {
 	/**
-	 * Login controller
-	 * @param req
-	 * @param res
-	 * @param next
+	 * Login with username and password.
 	 */
-	login: async (req: Request, res: Response, next: NextFunction): Promise<void> => {
-		try {
-			const { username, password } = req.body;
-			const { jwt } = await service.login(username, password);
-			res.json({ response: jwt });
-		} catch (error) {
-			next(error);
-		}
+	login: async (req: Request, res: Response): Promise<void> => {
+		const { username, password } = req.body;
+		const { jwt } = await service.login(username, password);
+		res.json({ response: jwt });
 	},
 };
