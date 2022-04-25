@@ -9,9 +9,13 @@ Create a `.env` file in the root of the project.
 ```dotenv
 # Specify environment [development | staging | production]
 NODE_ENV=
-
-# Server Port
 PORT=
+
+# MongoDB
+MONGO_URI=
+
+# JWT
+TOKEN_SECRET=
 ```
 ## Project Structure
 ```
