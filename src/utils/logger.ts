@@ -9,7 +9,8 @@ const levels = {
 	debug: 4,
 };
 
-const level = (): string => (config.env.NODE_ENV === 'development' ? 'debug' : 'http');
+const environment = config.env.NODE_ENV || 'development';
+const level = (): string => (environment === 'development' ? 'debug' : 'http');
 
 const transports = [
 	new winston.transports.Console(),
@@ -20,6 +21,9 @@ const transports = [
 	new winston.transports.File({ filename: 'logs/all.log' }),
 ];
 
+/**
+ * Winston Logger
+ */
 const logger = winston.createLogger({
 	level: level(),
 	levels,

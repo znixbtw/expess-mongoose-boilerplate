@@ -1,6 +1,7 @@
 # Express Typescript Boilerplate
 :rocket: ExpressJS API boilerplate written in Typescript.
 A minimalistic boilerplate to start building RESTful APIs quickly.
+
 ---
 
 ## Environment Variables

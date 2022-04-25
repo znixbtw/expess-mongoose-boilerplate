@@ -1,6 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
-import { body } from 'express-validator';
-import { validationResult } from 'express-validator';
+import { body, validationResult } from 'express-validator';
 import { logger } from '../utils';
 
 export default {
@@ -10,7 +9,9 @@ export default {
 		if (!errors.isEmpty()) {
 			logger.debug(errors);
 			const array: (string | any)[] = [];
-			errors.array().forEach((error: any) => array.push({ param: error.param, msg: error.msg }));
+			errors
+				.array()
+				.forEach((error: { param: string; msg: string }) => array.push({ param: error.param, msg: error.msg }));
 			return res.status(400).json({
 				error: true,
 				response: array,
@@ -19,26 +20,37 @@ export default {
 		next();
 	},
 
-	username: () =>
-		body('username', 'invalid username')
+	username: (param: string = 'username') =>
+		body(param, `Invalid ${param}`)
 			//
 			.notEmpty()
 			.bail()
-			//
 			.isLength({ min: 4, max: 15 })
 			.bail()
-			//
 			.isAlphanumeric()
 			.bail()
 			//
 			.trim(),
 
-	password: () =>
-		body('password', 'invalid password')
+	email: (param: string = 'email') =>
+		body(param, `Invalid ${param}`)
 			//
 			.notEmpty()
 			.bail()
+			.isLength({ min: 3, max: 100 })
+			.bail()
+			.isEmail()
+			.bail()
 			//
+			.trim()
+			.normalizeEmail(),
+
+	password: (param: string = 'password') =>
+		body(param, `Invalid ${param}`)
+			//
+			.notEmpty()
+			.bail()
 			.isLength({ min: 6, max: 150 })
+			.withMessage('Please try that again.')
 			.bail(),
 };

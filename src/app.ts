@@ -15,7 +15,7 @@ app.use(express.json());
 app.use(ratelimit.global);
 
 // Routes
-app.use('/v1', ratelimit.auth, routes);
+app.use('/v1', routes);
 
 // Handlers
 app.use(errorHandler.notFound);

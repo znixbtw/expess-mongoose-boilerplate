@@ -4,7 +4,13 @@ import createError from 'http-errors';
 
 const errorMessage = 'You are being rate-limited.';
 
+/**
+ * Ratelimit
+ */
 export default {
+	/**
+	 * Auth Ratelimit
+	 */
 	auth: rateLimit({
 		windowMs: 15 * 60 * 1000, // 15 minutes
 		max: 5, // Limit each IP to 5 requests per `window` (here, per 15 minutes)
@@ -15,6 +21,9 @@ export default {
 			next(new createError.TooManyRequests(errorMessage)),
 	}),
 
+	/**
+	 * Global Ratelimit
+	 */
 	global: rateLimit({
 		windowMs: 15 * 60 * 1000, // 15 minutes
 		max: 100, // Limit each IP to 100 requests per `window` (here, per 15 minutes)
