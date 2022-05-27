@@ -17,7 +17,6 @@ export default {
 			message: 'Endpoint not found.',
 		});
 	},
-
 	/**
 	 * Controller/service exception handler
 	 */
@@ -27,7 +26,6 @@ export default {
 			next(err);
 		});
 	},
-
 	/**
 	 * Exception handler
 	 */
