@@ -1,6 +1,5 @@
-# Express Typescript Boilerplate
-:rocket: ExpressJS API boilerplate written in Typescript.
-A minimalistic boilerplate to start building RESTful APIs quickly.
+# Express Mongoose Typescript Boilerplate
+:rocket: Minimalistic ExpressJS and Mongo API boilerplate written in Typescript to start building RESTful APIs quickly.
 
 ---
 
@@ -31,3 +30,13 @@ src\
  |--app.js              # Express app
  |--index.js            # App entry point
 ```
+## Features
+- MongoDB: A Super fast NoSQL database.
+    -  [Mongoose](https://mongoosejs.com)
+- Validation: Validates input using provided schema.
+    - [express-validator](https://express-validator.github.io/docs)
+- CORS: Cross-Origin Resource-Sharing enabled.
+    - [cors](https://www.npmjs.com/package/cors)
+- Linting: Auto lints code.
+    - [ESLint](https://eslint.org)
+    - [Prettier](https://prettier.io)
